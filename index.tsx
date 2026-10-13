@@ -1,18 +1,16 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import * as Sentry from "@sentry/react";
+import * as Sentry from '@sentry/react';
 import { config } from './services/config';
+import { registerServiceWorker } from './services/pwa';
+import './index.css';
 
 // Initialize Vault Monitoring
-if (!config.isMockEnabled && import.meta.env.VITE_SENTRY_DSN) {  
-	Sentry.init({
+if (!config.isMockEnabled && import.meta.env.VITE_SENTRY_DSN) {
+  Sentry.init({
     dsn: import.meta.env.VITE_SENTRY_DSN,
-    integrations: [
-      Sentry.browserTracingIntegration(),
-      Sentry.replayIntegration(),
-    ],
+    integrations: [Sentry.browserTracingIntegration(), Sentry.replayIntegration()],
     tracesSampleRate: 1.0,
     replaysSessionSampleRate: 0.1,
     replaysOnErrorSampleRate: 1.0,
@@ -22,7 +20,7 @@ if (!config.isMockEnabled && import.meta.env.VITE_SENTRY_DSN) {
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
-  throw new Error("Could not find root element to mount to");
+  throw new Error('Could not find root element to mount to');
 }
 
 const root = ReactDOM.createRoot(rootElement);
@@ -31,3 +29,6 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+// Installable app: cache the app shell so it opens fast and works with a spotty connection
+registerServiceWorker();

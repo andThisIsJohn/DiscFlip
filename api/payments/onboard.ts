@@ -1,4 +1,3 @@
-
 import { createClient } from '@supabase/supabase-js';
 import Stripe from 'stripe';
 
@@ -11,17 +10,25 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY! // High-privilege key for updating user records
 );
 
-const getAppBaseUrl = () => {
-  // Prefer explicit server env; fallback to legacy Vite var if you already set it.
-  return (process.env.APP_BASE_URL || process.env.VITE_API_BASE_URL || '').replace(/\/+$/, '');
+const getAppBaseUrl = (req: any) => {
+  // Prefer explicit server env; otherwise use the site the request came from.
+  const configured = (process.env.APP_BASE_URL || '').replace(/\/+$/, '');
+  if (configured) return configured;
+  const origin = req.headers?.origin;
+  return typeof origin === 'string' ? origin.replace(/\/+$/, '') : '';
 };
-
 
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { userId } = req.body;
-  if (!userId) return res.status(400).json({ error: 'User ID is required' });
+  // The account being onboarded comes from the login token, not the request body
+  const token = (req.headers.authorization || '').replace('Bearer ', '');
+  const {
+    data: { user: authUser },
+    error: authError,
+  } = await supabase.auth.getUser(token);
+  if (authError || !authUser) return res.status(401).json({ error: 'Sign in first.' });
+  const userId = authUser.id;
 
   try {
     // 1. Fetch user from Supabase to check existing Stripe ID
@@ -39,7 +46,8 @@ export default async function handler(req: any, res: any) {
     if (!stripeAccountId) {
       const account = await stripe.accounts.create({
         type: 'express',
-        email: user.email,
+        email: user.email || authUser.email,
+        metadata: { discflip_user_id: userId },
         capabilities: {
           card_payments: { requested: true },
           transfers: { requested: true },
@@ -48,18 +56,15 @@ export default async function handler(req: any, res: any) {
       stripeAccountId = account.id;
 
       // Update user in DB
-      await supabase
-        .from('users')
-        .update({ stripe_account_id: stripeAccountId })
-        .eq('id', userId);
+      await supabase.from('users').update({ stripe_account_id: stripeAccountId }).eq('id', userId);
     }
 
     // 3. Create Account Link
-    const appBaseUrl = getAppBaseUrl();
+    const appBaseUrl = getAppBaseUrl(req);
     const accountLink = await stripe.accountLinks.create({
       account: stripeAccountId,
-      refresh_url: `${appBaseUrl}/account?stripe=refresh`,
-      return_url: `${appBaseUrl}/account?stripe=success`,
+      refresh_url: `${appBaseUrl}/?stripe=refresh`,
+      return_url: `${appBaseUrl}/?stripe=success`,
       type: 'account_onboarding',
     });
 
