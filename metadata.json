@@ -1,7 +1,5 @@
 {
   "name": "DiscFlip: Disc Golf Auctions",
   "description": "The premier marketplace for buying and selling collectible and performance disc golf discs with AI-powered appraisal and listing assistance.",
-  "requestFramePermissions": [
-    "camera"
-  ]
+  "requestFramePermissions": ["camera"]
 }
