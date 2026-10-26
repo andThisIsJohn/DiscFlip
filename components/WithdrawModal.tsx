@@ -37,7 +37,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ user, onClose, onSuccess 
 
   if (isProcessing) {
     return (
-      <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/95 backdrop-blur-xl">
+      <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/95 backdrop-blur-xl overflow-y-auto [align-items:safe_center]">
         <div className="text-center">
           <div className="relative w-20 h-20 mx-auto mb-8">
             <div className="absolute inset-0 border-4 border-orange-500/10 rounded-full"></div>
@@ -55,7 +55,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ user, onClose, onSuccess 
   }
 
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md overflow-y-auto [align-items:safe_center]">
       <div className="bg-white w-full max-w-lg rounded-[48px] shadow-2xl overflow-hidden animate-in zoom-in duration-300">
         <div className="p-10 border-b border-slate-50 flex justify-between items-center bg-slate-50/50">
           <div>

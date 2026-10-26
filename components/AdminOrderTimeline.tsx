@@ -288,7 +288,7 @@ const AdminOrderTimeline: React.FC<AdminOrderTimelineProps> = ({
 
       {/* Confirmation Overlay */}
       {isConfirming && (
-        <div className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto [align-items:safe_center]">
           <div className="bg-white w-full max-w-md rounded-[48px] p-12 text-center animate-in zoom-in">
             <div className="w-20 h-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-8 text-3xl">
               ⚠️

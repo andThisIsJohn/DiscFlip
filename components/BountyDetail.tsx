@@ -242,7 +242,7 @@ const BountyDetail: React.FC<BountyDetailProps> = ({ bounty, currentUser, onClos
       </div>
 
       {showSubmitForm && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl overflow-y-auto [align-items:safe_center]">
           <div className="bg-white w-full max-w-xl rounded-[48px] p-10 animate-in zoom-in duration-300">
             <BountySubmissionForm
               bounty={bounty}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { discArtUrl } from '../utils/placeholderArt';
 import {
   DiscAuction,
   User,
@@ -65,13 +66,13 @@ const BulkLister: React.FC<BulkListerProps> = ({ currentUser, onClose, onSubmit 
         hasInk: false,
         communityFeelTags: [],
         qrCodeId: `QR-${Math.random().toString(36).toUpperCase().substr(2, 6)}`,
-        imageUrl: 'https://picsum.photos/seed/bulk/600/600',
+        imageUrl: discArtUrl('#0f766e', '#99f6e4'),
       }));
     onSubmit(fullAuctions as any);
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl overflow-y-auto [align-items:safe_center]">
       <div className="bg-white w-full max-w-7xl h-[90vh] rounded-[48px] shadow-2xl overflow-hidden flex flex-col animate-in zoom-in duration-300">
         <div className="p-10 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
           <div>

@@ -42,7 +42,7 @@ const OrderIssueModal: React.FC<OrderIssueModalProps> = ({ auction, onClose, onS
   };
 
   return (
-    <div className="fixed inset-0 z-[170] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+    <div className="fixed inset-0 z-[170] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md overflow-y-auto [align-items:safe_center]">
       <div className="bg-white w-full max-w-2xl rounded-[48px] shadow-2xl overflow-hidden animate-in zoom-in duration-300 max-h-[90vh] flex flex-col">
         <div className="p-10 border-b border-slate-50 flex justify-between items-center bg-white flex-shrink-0">
           <div>

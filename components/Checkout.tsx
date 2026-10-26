@@ -123,7 +123,7 @@ const Checkout: React.FC<CheckoutProps> = ({ items, user, onUserUpdated, onCompl
 
   if (isProcessing) {
     return (
-      <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/80 backdrop-blur-xl">
+      <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/80 backdrop-blur-xl overflow-y-auto [align-items:safe_center]">
         <div className="text-center text-white p-8">
           <div className="relative w-24 h-24 mx-auto mb-6">
             <div className="absolute inset-0 border-4 border-white/20 rounded-full"></div>
@@ -141,7 +141,7 @@ const Checkout: React.FC<CheckoutProps> = ({ items, user, onUserUpdated, onCompl
   }
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md overflow-y-auto [align-items:safe_center]">
       <div className="bg-white w-full max-w-6xl rounded-[48px] shadow-2xl overflow-hidden flex flex-col md:flex-row animate-in zoom-in duration-300 max-h-[90vh]">
         <div className="flex-grow p-8 md:p-14 overflow-y-auto custom-scrollbar">
           <div className="flex items-center gap-6 mb-12">

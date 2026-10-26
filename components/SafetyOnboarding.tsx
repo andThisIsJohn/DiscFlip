@@ -6,7 +6,7 @@ interface SafetyOnboardingProps {
 
 const SafetyOnboarding: React.FC<SafetyOnboardingProps> = ({ onComplete }) => {
   return (
-    <div className="fixed inset-0 z-[400] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[400] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4 overflow-y-auto [align-items:safe_center]">
       <div className="bg-white w-full max-w-2xl rounded-[64px] shadow-2xl overflow-hidden animate-in zoom-in duration-500 flex flex-col">
         <div className="p-12 md:p-16 text-center space-y-12">
           <div className="flex justify-center">
