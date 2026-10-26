@@ -42,8 +42,9 @@ Everything is stored in your browser with sample data. Sign in with any email/pa
    redeploy.
 5. **Stripe webhook.** Stripe → Developers → Webhooks → add endpoint
    `https://<your-site>/api/payments/webhook` with `checkout.session.completed`,
-   `charge.dispute.created` and (on connected accounts) `account.updated`. Copy its signing
-   secret into `STRIPE_WEBHOOK_SECRET`.
+   `charge.dispute.created`, and copy its signing secret into `STRIPE_WEBHOOK_SECRET`. Add a
+   second endpoint at the same URL listening to **events on connected accounts** with
+   `account.updated`, and copy its signing secret into `STRIPE_CONNECT_WEBHOOK_SECRET`.
 6. **EasyPost webhook.** EasyPost → Webhooks → add `https://<your-site>/api/shipping/webhook`
    with a webhook secret you make up; put the same value in `EASYPOST_WEBHOOK_SECRET`.
 7. **Daily maintenance job.** Set `CRON_SECRET` to any long random string. Vercel runs
