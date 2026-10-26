@@ -33,7 +33,7 @@ const PickupScheduler: React.FC<PickupSchedulerProps> = ({ auction, onClose, onS
   };
 
   return (
-    <div className="fixed inset-0 z-[170] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+    <div className="fixed inset-0 z-[170] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md overflow-y-auto [align-items:safe_center]">
       <div className="bg-white w-full max-w-xl rounded-[48px] shadow-2xl overflow-hidden animate-in zoom-in duration-300">
         <div className="p-10 border-b border-slate-50 flex justify-between items-center bg-slate-50/50">
           <div>

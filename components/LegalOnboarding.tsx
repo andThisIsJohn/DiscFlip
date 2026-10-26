@@ -15,7 +15,7 @@ const LegalOnboarding: React.FC<LegalOnboardingProps> = ({ onComplete }) => {
   const isComplete = checks.over18 && checks.acceptedTerms && checks.payoutDisclosure;
 
   return (
-    <div className="fixed inset-0 z-[500] bg-black/98 backdrop-blur-3xl flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[500] bg-black/98 backdrop-blur-3xl flex items-center justify-center p-4 overflow-y-auto [align-items:safe_center]">
       <div className="bg-white w-full max-w-2xl rounded-[64px] shadow-2xl overflow-hidden animate-in zoom-in duration-500 flex flex-col max-h-[90vh]">
         <div className="p-12 md:p-16 text-center space-y-10 flex-grow overflow-y-auto custom-scrollbar">
           <div className="flex justify-center">

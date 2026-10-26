@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { avatarUrl } from '../utils/placeholderArt';
 import { Bounty, User, BountyType, BountyStatus, ReportTargetType } from '../types';
 import { db } from '../services/databaseService';
 import CreateBounty from './CreateBounty';
@@ -162,7 +163,7 @@ const BountyHub: React.FC<BountyHubProps> = ({ currentUser }) => {
             <div className="flex items-center justify-between pt-6 border-t border-slate-50 mt-auto">
               <div className="flex items-center gap-3">
                 <img
-                  src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${bounty.buyerName}`}
+                  src={avatarUrl(bounty.buyerName)}
                   className="w-8 h-8 rounded-full bg-slate-100"
                 />
                 <div>

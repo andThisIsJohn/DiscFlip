@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { avatarUrl } from '../utils/placeholderArt';
 import { DiscAuction, AuctionType, ReportTargetType, User } from '../types';
 import SafetyMenu from './SafetyMenu';
 import { db } from '../services/databaseService';
@@ -138,7 +139,7 @@ const AuctionCard: React.FC<AuctionCardProps> = ({ auction, onClick, onViewSelle
           >
             <img
               className="h-6 w-6 rounded-full ring-2 ring-white shadow-sm"
-              src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${auction.seller}`}
+              src={avatarUrl(auction.seller)}
               alt=""
             />
             <span className="text-[10px] font-black text-slate-400 uppercase tracking-tight group-hover/seller:text-black">

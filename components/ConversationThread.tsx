@@ -354,7 +354,7 @@ const ConversationThread: React.FC<ConversationThreadProps> = ({
       </div>
 
       {showOfferModal && (
-        <div className="fixed inset-0 z-[120] bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[120] bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto [align-items:safe_center]">
           <div className="bg-white w-full max-w-md rounded-[48px] p-8 md:p-12 animate-in zoom-in duration-300 shadow-2xl">
             <h3 className="text-2xl md:text-3xl font-black text-black uppercase tracking-tight mb-6 md:mb-8 text-center">
               Value Proposal

@@ -78,7 +78,7 @@ const LabelPurchaseModal: React.FC<LabelPurchaseModalProps> = ({ auction, onClos
 
   if (isPurchasing) {
     return (
-      <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black/95 backdrop-blur-xl">
+      <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black/95 backdrop-blur-xl overflow-y-auto [align-items:safe_center]">
         <div className="text-center">
           <div className="w-20 h-20 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-6" />
           <h3 className="text-xl font-black text-white uppercase tracking-widest">
@@ -93,7 +93,7 @@ const LabelPurchaseModal: React.FC<LabelPurchaseModalProps> = ({ auction, onClos
   }
 
   return (
-    <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+    <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md overflow-y-auto [align-items:safe_center]">
       <div className="bg-white w-full max-w-2xl rounded-[48px] shadow-2xl overflow-hidden flex flex-col animate-in zoom-in duration-300 max-h-[90vh]">
         <div className="p-10 border-b border-slate-50 flex justify-between items-center bg-slate-50/50">
           <div>

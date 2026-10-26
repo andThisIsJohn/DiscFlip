@@ -29,7 +29,7 @@ const AppealModal: React.FC<AppealModalProps> = ({ currentUser, onClose, onSucce
 
   if (submitted) {
     return (
-      <div className="fixed inset-0 z-[300] bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-[300] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto [align-items:safe_center]">
         <div className="bg-white w-full max-w-md rounded-[48px] p-12 text-center animate-in zoom-in">
           <div className="w-20 h-20 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8 text-3xl">
             📥
@@ -56,7 +56,7 @@ const AppealModal: React.FC<AppealModalProps> = ({ currentUser, onClose, onSucce
   }
 
   return (
-    <div className="fixed inset-0 z-[300] bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[300] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto [align-items:safe_center]">
       <div className="bg-white w-full max-w-xl rounded-[48px] shadow-2xl overflow-hidden animate-in zoom-in flex flex-col max-h-[90vh]">
         <div className="p-10 border-b border-slate-50 flex justify-between items-center bg-white">
           <div>

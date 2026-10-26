@@ -28,6 +28,7 @@ import {
   AuctionType,
 } from '../types';
 import { MOCK_USER, OTHER_USERS, INITIAL_AUCTIONS, CLUBS } from '../constants';
+import { avatarUrl, discArtUrl } from '../utils/placeholderArt';
 
 /**
  * DatabaseService
@@ -77,7 +78,7 @@ const normalizeUser = (u: Partial<User>): User =>
     name: 'Hunter',
     handle: '',
     email: '',
-    avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${u.id || 'hunter'}`,
+    avatar: avatarUrl(u.name || u.id || 'hunter'),
     rating: 5,
     balance: 0,
     payoutBalance: 0,
@@ -621,7 +622,7 @@ class DatabaseService {
     ]);
     const prepared: Partial<DiscAuction> = {
       ...auction,
-      imageUrl: imageUrl || 'https://picsum.photos/seed/discflip/600/600',
+      imageUrl: imageUrl || discArtUrl(),
       rimImage,
       profileImage,
       weightPhoto,

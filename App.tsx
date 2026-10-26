@@ -361,6 +361,15 @@ const App: React.FC = () => {
     );
   }
 
+  const navLinks: { id: MainView; label: string }[] = [
+    { id: 'home', label: 'Market' },
+    { id: 'clubs', label: 'Clubs' },
+    { id: 'wantlist', label: 'Bounty Hub' },
+    { id: 'community', label: 'Community' },
+    { id: 'messenger', label: 'Messages' },
+    ...(user?.isSystemAdmin ? [{ id: 'admin' as MainView, label: 'Admin Hub' }] : []),
+  ];
+
   return (
     <div className="h-screen bg-slate-50 flex flex-col overflow-hidden">
       <header className="bg-white/95 backdrop-blur-xl border-b border-slate-200 flex-shrink-0 z-50 shadow-sm">
@@ -395,17 +404,10 @@ const App: React.FC = () => {
             </div>
 
             <nav className="hidden lg:flex items-center gap-8">
-              {[
-                { id: 'home', label: 'Market' },
-                { id: 'clubs', label: 'Clubs' },
-                { id: 'wantlist', label: 'Bounty Hub' },
-                { id: 'community', label: 'Community' },
-                { id: 'messenger', label: 'Messages' },
-                ...(user?.isSystemAdmin ? [{ id: 'admin', label: 'Admin Hub' }] : []),
-              ].map((link) => (
+              {navLinks.map((link) => (
                 <button
                   key={link.id}
-                  onClick={() => handleProtectedNavigation(link.id as MainView)}
+                  onClick={() => handleProtectedNavigation(link.id)}
                   className={`text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:text-orange-600 ${currentView === link.id ? 'text-orange-600' : 'text-slate-400'}`}
                 >
                   {link.label}
@@ -651,6 +653,22 @@ const App: React.FC = () => {
           <AdminHub currentUser={user} auctions={auctions} onReload={loadData} />
         )}
       </main>
+
+      {/* Phones and tablets: the top links are hidden below the lg breakpoint, so show a tab bar */}
+      <nav
+        className="lg:hidden flex-shrink-0 bg-white border-t border-slate-200 flex justify-around"
+        style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+      >
+        {navLinks.map((link) => (
+          <button
+            key={link.id}
+            onClick={() => handleProtectedNavigation(link.id)}
+            className={`flex-1 py-4 text-[9px] font-black uppercase tracking-widest transition-all ${currentView === link.id ? 'text-orange-600' : 'text-slate-400'}`}
+          >
+            {link.label}
+          </button>
+        ))}
+      </nav>
 
       {/* Modals */}
       {selectedAuctionId && user && (

@@ -24,6 +24,9 @@ Fee settings live in `api/_lib/fees.ts` and `services/fees.ts`.
 
 **Demo mode (no accounts needed).** Leave `VITE_SUPABASE_URL` empty (or delete `.env.local`).
 Everything is stored in your browser with sample data. Sign in with any email/password.
+Sample accounts: `ace@discflip.io` (a buyer), `lover@discflip.io` and `johnny@example.com`
+(sellers). Any password works. To get a single shareable file of the demo, run
+`npm run build:demo`; it writes `dist-demo/discflip-demo.html`, which opens in any browser.
 
 **Live mode.** Set the Supabase variables in `.env.local` and do the one-time setup below.
 
