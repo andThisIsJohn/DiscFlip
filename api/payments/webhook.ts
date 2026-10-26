@@ -40,11 +40,26 @@ export default async function handler(req: any, res: any) {
       offset += chunk.length;
     }
 
-    event = stripe.webhooks.constructEvent(
-      rawBody as any,
-      sig as any,
-      process.env.STRIPE_WEBHOOK_SECRET!
-    );
+    // The platform endpoint and the connected-accounts endpoint each get their
+    // own signing secret from Stripe, so accept either one.
+    const secrets = [
+      process.env.STRIPE_WEBHOOK_SECRET,
+      process.env.STRIPE_CONNECT_WEBHOOK_SECRET,
+    ].filter(Boolean) as string[];
+    if (secrets.length === 0) throw new Error('STRIPE_WEBHOOK_SECRET is not set');
+
+    let lastError: any;
+    let verified: Stripe.Event | undefined;
+    for (const secret of secrets) {
+      try {
+        verified = stripe.webhooks.constructEvent(rawBody as any, sig as any, secret);
+        break;
+      } catch (e) {
+        lastError = e;
+      }
+    }
+    if (!verified) throw lastError;
+    event = verified;
   } catch (err: any) {
     console.error(`Webhook Signature Error: ${err.message}`);
     return res.status(400).send(`Webhook Error: ${err.message}`);
